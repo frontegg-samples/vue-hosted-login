@@ -50,6 +50,8 @@ export default {
 
 .header-wrapper {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: space-between;
   align-items: center;
 }

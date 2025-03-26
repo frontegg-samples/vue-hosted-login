@@ -97,21 +97,29 @@ export default {
 .account-card .title-wrapper {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 24px;
 }
 
 .account-card .title-wrapper .title {
-  font-size: 25px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--grey-900);
 }
 
 .tenants-wrapper {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 24px;
 }
+
+@media (min-width: 768px) {
+  .tenants-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 </style>

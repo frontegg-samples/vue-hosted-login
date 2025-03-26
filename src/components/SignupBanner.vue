@@ -43,7 +43,17 @@ export default {
           rel="noreferrer"
           class="visit-doc"
         >
-          <img src="/icons/open-in-new.svg" alt="open-in-new" />
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            fill="#373739"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.6667 10.6667H1.33333V1.33333H6V0H1.33333C0.593333 0 0 0.6 0 1.33333V10.6667C0 11.4 0.593333 12 1.33333 12H10.6667C11.4 12 12 11.4 12 10.6667V6H10.6667V10.6667ZM7.33333 0V1.33333H9.72667L3.17333 7.88667L4.11333 8.82667L10.6667 2.27333V4.66667H12V0H7.33333Z"
+              />
+            </svg>
           Visit Docs
         </a>
         <div class="third-party-links">
@@ -136,9 +146,17 @@ export default {
   gap: 8px;
   align-items: center;
 }
+
+.visit-doc svg {
+  transition: all 0.3s ease;
+}
+
 .visit-doc:hover,
-.visit-doc:active {
-  color: var(--classic-darker-primary);
+.visit-doc:active,
+.visit-doc:hover svg,
+.visit-doc:active svg {
+  fill: var(--classic-primary);
+  color: var(--classic-primary);
 }
 
 .icon-link {
@@ -147,11 +165,11 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 50%;
+  border-radius: 25%;
   background-color: transparent;
   transition: background-color 0.3s ease;
 }
 .icon-link:hover {
-  background-color: var(--classic-light-info);
+  background-color: var(--classic-grey-100);
 }
 </style>

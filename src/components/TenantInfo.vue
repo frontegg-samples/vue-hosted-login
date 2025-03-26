@@ -5,10 +5,12 @@ import getInitials from '../utils/getInitials'
 import TenantsDropdown from './TenantsDropdown.vue'
 import { useAuthState, mapAuthActions } from '@frontegg/vue'
 import { ref, watch } from 'vue'
+import CopyToClipboardButton from './CopyToClipboardButton.vue'
 
 export default {
   components: {
     TenantsDropdown,
+    CopyToClipboardButton,
   },
   setup() {
     const { tenantsState } = useAuthState()
@@ -33,21 +35,25 @@ export default {
       })
     }
 
-    watch(activeTenant, () => {
-      isLoadingMembers.value = true
-      if (!activeTenant.value) {
-        isLoadingMembers.value = false
-        return
-      }
-      mapAuthActions('loadUsers')({
-        pageOffset: 0,
-        pageSize: 100,
-        callback: (res) => {
-          membersCount.value = res?.length || 0
+    watch(
+      activeTenant,
+      () => {
+        isLoadingMembers.value = true
+        if (!activeTenant.value) {
           isLoadingMembers.value = false
-        },
-      })
-    }, { immediate: true })
+          return
+        }
+        mapAuthActions('loadUsers')({
+          pageOffset: 0,
+          pageSize: 100,
+          callback: (res) => {
+            membersCount.value = res?.length || 0
+            isLoadingMembers.value = false
+          },
+        })
+      },
+      { immediate: true },
+    )
 
     return {
       tenantsState,
@@ -82,9 +88,12 @@ export default {
     <div class="tenant-info">
       <div class="tenant-info-item">
         <p class="tenant-info-item-title">ID</p>
-        <p class="tenant-info-item-value">
-          {{ activeTenant.id }}
-        </p>
+        <div class="tenant-info-copy-wrapper">
+          <p class="tenant-info-item-value ellipsis">
+            {{ activeTenant.id }}
+          </p>
+          <CopyToClipboardButton :text="activeTenant.id" />
+        </div>
       </div>
 
       <div class="tenant-info-item">
@@ -102,3 +111,11 @@ export default {
     <button class="secondary-button edit-button" @click="openAccountSettings">Edit account</button>
   </div>
 </template>
+
+<style scoped>
+.ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+</style>
