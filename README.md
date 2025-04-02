@@ -73,8 +73,6 @@ To start the application, run:
 npm run dev
 ```
 
-That’s it — you're all set!
-
 The app will be available at [http://localhost:3000](http://localhost:3000).
 
 ![Vue.js sample](/public/sample-vue.png)
