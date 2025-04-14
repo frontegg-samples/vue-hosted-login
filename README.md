@@ -54,7 +54,7 @@ If you're using your own credentials, follow the guidelines below.
 Run the following command:
 
 ```bash
-npm clone <repo>
+git clone <repo>
 ```
 
 ### 3. Install dependencies -
